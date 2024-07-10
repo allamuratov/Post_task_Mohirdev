@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body>
+
+
+
+    <h1>Salom |  {{ user.username }} </h1>
+
+    <h3><a href="{% url 'login' %}">LogIn</a></h3>
+    <h3><a href="{% url 'singup' %}">SingUp</a></h3>
+
+<hr>
+<h1>POSTs</h1>
+<hr>
+<h2>Yangi postlar</h2>
+
+{% for post in post_list %}
+
+         <li>
+            <a href="{% url 'post_detail' post.pk %}">{{ post.title | truncatewords:10 }} </a>
+            <ul>{{ post.body | truncatewords:7 }} </ul>
+            <ul>Views || {{ post.hit_count.hits }}</ul>
+        </li>
+
+{% endfor %}
+
+<hr>
+
+<h3>
+    <a href="{% url 'post_create' %}"> Yangi post qoshish</a>
+</h3>
+
+<hr>
+
+
+<h2>Kop korilgan  postlar</h2>
+
+
+            {% for post in likes_post %}
+              <li>
+                    <a href="{% url 'post_detail' post.pk %}">{{ post.title | truncatewords:10 }} </a>
+                    <ul>{{ post.body | truncatewords:7 }} </ul>
+                    <ul>Views || {{ post.hit_count.hits }}</ul>
+                </li>
+            {% endfor %}
+
+
+<hr>
+
+
+<h2>Haftaning ommabop  postlari</h2>
+
+
+        {% for post in week_post %}
+        <li>
+            <a href="{% url 'post_detail' post.pk %}">{{ post.title | truncatewords:10 }} </a>
+            <ul>{{ post.body | truncatewords:7 }} </ul>
+            <ul>Views || {{ post.hit_count.hits }}</ul>
+        </li>
+        {% endfor %}
+
+
+<hr>
+
+
+<h2>Oyning ommabop postlari</h2>
+
+
+            {% for post in month_post %}
+                <li>
+                    <a href="{% url 'post_detail' post.pk %}">{{ post.title | truncatewords:10 }} </a>
+                    <ul>{{ post.body | truncatewords:7 }} </ul>
+                    <ul>Views || {{ post.hit_count.hits }}</ul>
+                </li>
+            {% endfor %}
+
+
+<hr>
+
+
+<h2>Tavsiya etilgan postlari</h2>
+                {% for post in likes_post %}
+                <li>
+                    <a href="{% url 'post_detail' post.pk %}">{{ post.title | truncatewords:10 }} </a>
+                    <ul>{{ post.body | truncatewords:7 }} </ul>
+                    <ul>Views || {{ post.hit_count.hits }}</ul>
+                </li>
+                {% endfor %}
+
+<hr>
+
+</body>
+</html>

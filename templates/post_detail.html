@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load hitcount_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<h1>{{ post.title }}</h1>
+<p>{{ post.body }}</p>
+<p><img src="{{ post.image.url }}" alt="{{ post.title }}"></p>
+
+<h2>Comments</h2>
+{% for comment in post.comments.all %}
+
+<li> {{ comment }} </li>
+<ul> <p2> by  </p2>{{ comment.author }}</ul>
+
+{% endfor %}
+
+
+
+    <form method="POST">{% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit"> Add comment</button>
+    </form>
+
+
+
+
+
+<a href="{% url 'post_list' %}"> Orqaga </a>
+</body>
+</html>
